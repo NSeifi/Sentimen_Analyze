@@ -1,0 +1,3 @@
+re.sub(r'([\w\.-]+)@([\w\.-]+)', r'--email--', email_body)
+re.sub('[0-9]+' , '--number--', email_body) baraye addad aval bayad peyda koni tule adado bishtar az 6 masaln bezari baad convert koni
+result = re.sub(r"http\S+", "--url--", email_body)
