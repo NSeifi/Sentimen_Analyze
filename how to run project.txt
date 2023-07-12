@@ -1,0 +1,39 @@
+for annotating NER:
+neuroner --train_model=False --use_pretrained_model=True --dataset_text_folder=./data/example_unannotated_texts --pretrained_model_folder=./trained_models/conll_2003_en
+
+---------------------------------------------------------
+CoreNLP run sentiment treebank:
+https://stanfordnlp.github.io/CoreNLP/corenlp-server.html
+
+1. download core nlp
+2. unzip and then cd to folder contain stanford nlp:
+run this in terminal on that address by terminal:
+
+java -mx4g -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLPServer -port 9000 -timeout 15000
+
+3. new tab: 
+https://towardsdatascience.com/natural-language-processing-using-stanfords-corenlp-d9e64c1e1024
+
+4. pip install pycorenlp
+5. terminal in new tab: python
+
+from pycorenlp import StanfordCoreNLP
+nlp = StanfordCoreNLP('http://localhost:9000')
+
+OR use nltk instead of corenlp
+from nltk.parse import CoreNLPParser
+result = CoreNLPParser(url='http://localhost:9000')
+
+text = "This movie was actually neither that funny, nor super witty. The movie was meh. I liked watching that movie. If I had a choice, I would not watch that movie again."
+res = result.annotate(text,properties={'annotators': 'sentiment, ner, pos','outputFormat': 'json','timeout': 1000,})
+
+
+6. or use this codes in IDE but the server should be run on that time.
+---------------------------------------------------------------
+SEntNeuron:
+copy and paste the encoder.py in your project to run :
+
+model = Model()
+text = [sample_email_sentence]
+xx = model.transform(text)
+sentiment_unit = xx[:, 2388]
